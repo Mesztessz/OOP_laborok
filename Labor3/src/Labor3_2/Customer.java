@@ -1,11 +1,8 @@
 package Labor3_2;
 
-import Labor3_1.BankAccount;
-
 public class Customer {
     private String firstName;
     private String lastName;
-    private BankAccount account;
     public static final int MAX_ACCOUNTS = 10;
     private int numAccounts=0;
     private BankAccount accounts[] = new BankAccount [MAX_ACCOUNTS];
@@ -19,7 +16,7 @@ public class Customer {
         return numAccounts;
     }
 
-    public void addAccount(BankAccount accounts){
+    public void addAccount(BankAccount account){
         if(numAccounts > 9){
             return;
         }
@@ -37,23 +34,38 @@ public class Customer {
         return lastName;
     }
 
-    public BankAccount getAccount() {
-        return account;
+    public BankAccount getAccount(String accountNumber) {
+        for(int i = 0; i < numAccounts; i++){
+            if(accounts[i].getAccountNumber().equals(accountNumber)){
+                return accounts[i];
+            }
+        }
+        return accounts[0];
     }
 
     public void setLastName(String lastName) {
         this.lastName = lastName;
     }
-    public void closeAccount(){
-        numAccounts --;
+    public void closeAccount(int accountNumber){
+        if(accounts[accountNumber] == null){
+            System.out.println("Invalid account number");
+        }
+        else{
+            numAccounts --;
+            accounts[accountNumber] = null;
+            for(int i = accountNumber; i < numAccounts; i++){
+                accounts[i] = accounts[i+1];
+            }
+        }
     }
 
     @Override
     public String toString() {
-        return "Customer{" +
-                "firstName='" + firstName + '\'' +
-                ", lastName='" + lastName + '\'' +
-                ", account=" + account +
-                '}';
+        StringBuffer result = new StringBuffer();
+        result.append(firstName + ' ' + lastName + " accounts:\n");
+        for(int i=0; i<numAccounts; ++i){
+            result.append( "\t" + accounts[i].toString() +"\n");
+        }
+        return result.toString();
     }
 }
