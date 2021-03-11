@@ -13,6 +13,7 @@ public class MyArray {
 
     public MyArray(int length) {
         this.length = length;
+        this.elements = new double[length];
     }
 
     public MyArray(double[] elements) {
@@ -22,7 +23,10 @@ public class MyArray {
 
     public MyArray(MyArray myarray){
         this.length = myarray.length;
-        this.elements = myarray.elements;
+        this.elements = new double[this.length];
+        for(int i = 0; i < this.length; i++){
+            this.elements[i] = myarray.elements[i];
+        }
     }
 
     public MyArray(String file){
@@ -35,6 +39,7 @@ public class MyArray {
         }
         String line = scanner.nextLine();
         this.length = Integer.parseInt(line);
+        this.elements = new double[this.length];
         line = scanner.nextLine();
         String[] elements = line.split(" ");
         for(int i = 0; i < this.length; i++){
@@ -81,5 +86,4 @@ public class MyArray {
         }
         System.out.println();
     }
-
 }
