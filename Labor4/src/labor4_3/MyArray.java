@@ -18,7 +18,10 @@ public class MyArray {
 
     public MyArray(double[] elements) {
         this.length = elements.length;
-        this.elements = elements;
+        this.elements = new double [this.length];
+        for(int i = 0; i < this.length; i++){
+            this.elements[i] = elements[i];
+        }
     }
 
     public MyArray(MyArray myarray){
