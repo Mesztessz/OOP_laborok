@@ -9,7 +9,7 @@ public class Main {
     public static void main(String[] args){
         Scanner scanner = null;
         try {
-            scanner = new Scanner(new File("OOP laborok/Labor4/lab4_2_input.txt"));
+            scanner = new Scanner(new File("Labor4/lab4_2_input.txt"));
         } catch (FileNotFoundException e) {
             e.printStackTrace();
             System.exit(1);
