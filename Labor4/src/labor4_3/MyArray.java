@@ -52,8 +52,8 @@ public class MyArray {
 
     public void fillRandom(int a, int b){
         Random rand = new Random();
-        for(int i = a; i < b; i++){
-            this.elements[i] = rand.nextInt(100);
+        for(int i = 0; i < this.length; i++){
+            this.elements[i] = rand.nextDouble()*(b-a)+a;
         }
     }
 
