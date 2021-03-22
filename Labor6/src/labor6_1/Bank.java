@@ -1,4 +1,4 @@
-package labor5_1;
+package labor6_1;
 
 import java.io.FileNotFoundException;
 import java.io.PrintStream;

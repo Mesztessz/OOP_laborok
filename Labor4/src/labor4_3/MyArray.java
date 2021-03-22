@@ -50,7 +50,7 @@ public class MyArray {
         }
     }
 
-    public void fillRandom(int a, int b){
+    public void fillRandom(double a,double b){
         Random rand = new Random();
         for(int i = 0; i < this.length; i++){
             this.elements[i] = rand.nextDouble()*(b-a)+a;

@@ -9,7 +9,7 @@ public class Matrix {
 
     public Matrix(double[][] data) {
         this.rows = data.length;
-        this.columns = data[rows-1].length;
+        this.columns = data[this.rows-1].length;
         this.data = new double[this.rows][this.columns];
         for(int i = 0; i < this.rows; i++){
             for(int j = 0; j < this.columns; j++){
@@ -55,7 +55,7 @@ public class Matrix {
     public void printMatrix(){
         for(int i = 0; i < this.rows; i++){
             for(int j = 0; j < this.columns; j++){
-                System.out.print(this.data[i][j] + " ");
+                System.out.printf("%10.2f ", this.data[i][j]);
             }
             System.out.println();
         }
