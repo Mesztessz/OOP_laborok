@@ -4,7 +4,10 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Locale;
 import java.util.Scanner;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class DictionaryService {
     private IDictionary dictionary;
@@ -30,13 +33,17 @@ public class DictionaryService {
 
         while(scanner.hasNextLine()){
             String line = scanner.nextLine();
-            String[] elements = line.split(" ");
-            for(String e:elements){
-                if(!dictionary.find(e.trim())){
-                    missingWords.add(e.trim());
+            String regex = "[a-zA-Z]+";
+            Pattern pattern = Pattern.compile(regex);
+            Matcher matcher = pattern.matcher(line);
+            while(matcher.find()){
+                String temp = matcher.group();
+                if(!findWord(temp.toLowerCase(Locale.ROOT))){
+                    if(!missingWords.contains(temp)) {
+                        missingWords.add(temp);
+                    }
                 }
             }
-
         }
         return missingWords;
     }
