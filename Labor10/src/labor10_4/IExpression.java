@@ -4,6 +4,9 @@ public interface IExpression {
     static double evaluate(String postfixExpression) throws ExpressionException{
         Stack stack = new Stack(10);
         String[] elements = postfixExpression.split(" ");
+//        for(String e : elements){
+//            System.out.println(e);
+//        }
         for(String e:elements){
             if(isOperator(e)){
                 int num1;
@@ -29,22 +32,24 @@ public interface IExpression {
                         stack.push(num2-num1);
                     }
                 } catch (StackException stackException) {
-                    throw new ExpressionException("");
+                    throw new ExpressionException("Wrong expression");
                 }
             }
             else{
                 try {
                     stack.push(Double.parseDouble(e));
                 } catch (StackException stackException) {
-                    throw new ExpressionException("");
+                    throw new ExpressionException("Stack size is not proper");
+                } catch(NumberFormatException e1){
+                    throw new ExpressionException("Wrong operand");
                 }
             }
         }
+
         try {
             return stack.top();
         } catch (StackException stackException) {
-            System.out.println(stackException.toString());
-            return 0;
+            throw new ExpressionException("Wrong expression");
         }
     }
 
